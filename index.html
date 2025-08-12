@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>筋肉痛ビジュアライザー</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loader">
+        <div class="spinner"></div>
+        <p>3Dモデルを読み込み中...</p>
+    </div>
+
+    <div id="canvas-container"></div>
+
+    <div id="top-ui-container">
+        <button id="lang-toggle" data-lang="ja">English</button>
+        <button id="save-image">画像保存</button>
+    </div>
+    
+    <div id="view-controls">
+        <button id="reset-view-front">正面</button>
+        <button id="reset-view-back">背面</button>
+    </div>
+
+    <div id="calendar-container">
+        <div id="calendar-header">
+            <button id="prev-month">&lt;</button>
+            <h3 id="month-year"></h3>
+            <button id="next-month">&gt;</button>
+        </div>
+        <div id="weekdays"></div>
+        <div id="calendar-body"></div>
+    </div>
+
+    <div id="pain-level-panel" class="hidden">
+        <h4 id="muscle-name-label">筋肉名</h4>
+        <div class="pain-buttons">
+            <button class="pain-level-btn" data-level="0">リセット</button>
+            <button class="pain-level-btn" data-level="1" style="background-color: #F9E79F;">弱</button>
+            <button class="pain-level-btn" data-level="2" style="background-color: #F5B041;">中</button>
+            <button class="pain-level-btn" data-level="3" style="background-color: #E67E22;">強</button>
+        </div>
+        <button id="close-panel">閉じる</button>
+    </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
