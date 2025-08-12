@@ -1,0 +1,153 @@
+:root {
+    --pain-level-1: #F9E79F;
+    --pain-level-2: #F5B041;
+    --pain-level-3: #E67E22;
+    --selected-day-bg: #2980B9;
+    --today-border: #E74C3C;
+    --has-data-dot: #2ECC71;
+    --ui-bg: rgba(44, 62, 80, 0.8);
+    --text-color: #ECF0F1;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #34495E;
+    color: var(--text-color);
+}
+
+#canvas-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* --- ローダー --- */
+#loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 100;
+}
+.spinner {
+    border: 4px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top: 4px solid var(--text-color);
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- UIコントロール --- */
+#top-ui-container, #view-controls {
+    position: absolute;
+    top: 10px;
+    padding: 5px;
+    display: flex;
+    gap: 10px;
+}
+#top-ui-container { left: 10px; }
+#view-controls { right: 10px; }
+
+button {
+    padding: 8px 12px;
+    background-color: var(--ui-bg);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+}
+button:hover { background-color: rgba(52, 73, 94, 0.9); }
+
+/* --- カレンダー --- */
+#calendar-container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 400px;
+    background: var(--ui-bg);
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+    backdrop-filter: blur(5px);
+}
+#calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+#weekdays, #calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    gap: 5px;
+}
+#weekdays div { font-size: 0.8em; font-weight: bold; }
+.calendar-day {
+    padding: 8px 0;
+    cursor: pointer;
+    border-radius: 50%;
+    position: relative;
+    transition: background-color 0.2s;
+}
+.calendar-day:hover:not(.empty) { background-color: rgba(255,255,255,0.2); }
+.calendar-day.selected {
+    background-color: var(--selected-day-bg);
+    color: white;
+}
+.calendar-day.today { border: 2px solid var(--today-border); }
+.calendar-day.has-data::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--has-data-dot);
+}
+.empty { cursor: default; }
+
+/* --- 筋肉痛レベルパネル --- */
+#pain-level-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--ui-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    text-align: center;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+.pain-buttons {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+.pain-level-btn { color: #333; }
+#close-panel {
+    margin-top: 10px;
+    background-color: #95a5a6;
+}
+.hidden { display: none; }
